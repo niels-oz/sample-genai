@@ -7,17 +7,12 @@ import openai
 
 # from defaults import MODEL, , EXAMPLE_CONTENT, EXAMPLE_TASK
 
-from data import SAMPLE_DATA
-
-# defaults
-MODEL = 'gpt-3.5-turbo'
-SYSTEM_ROLE = '''Use the provided content delimited by triple quotes to answer questions. If the answer cannot be \
-found in the content, write "I could not find an answer."'''
+from defaults import MODEL, SYSTEM_ROLE, SAMPLE_DATA, SAMPLE_TASK
 
 
-def get_completion(user_prompt, user_content, role=SYSTEM_ROLE, model=MODEL, top_p=1.0, stop=None, temperature=0,
+def get_completion(task, content, role=SYSTEM_ROLE, model=MODEL, top_p=1.0, stop=None, temperature=0,
                    frequency_penalty=0, presence_penalty=0):
-    prompt = f'{user_prompt} \n\n Content: """{user_content}"""'
+    prompt = f'{task} \n\n Content: """{content}"""'
     messages = [{'role': 'system', 'content': role}, {'role': 'user', 'content': prompt}]
     response = openai.ChatCompletion.create(
         model=model,
@@ -29,18 +24,26 @@ def get_completion(user_prompt, user_content, role=SYSTEM_ROLE, model=MODEL, top
         stop=stop,
     )
     print(response)
-    return locals(), response.choices[0].message['content']
+    return response.choices[0].message['content']
 
 
 # sets env vars as defined in .env
 _ = load_dotenv()
 openai.api_key = os.environ['OPENAI_API_KEY']
 
+# Initializing session state variables
+if 'response' not in st.session_state:
+    st.session_state['response'] = {}
+
 
 st.set_page_config(layout='wide')
 # st.markdown('<style>#MainMenu {visibility: hidden;} footer {visibility: hidden;}</style>', unsafe_allow_html=True)
-st.markdown('<style>button {height: auto;padding-top: 10px !important;padding-bottom: 10px !important;}</style>',
-            unsafe_allow_html=True,)
+# st.markdown('<style>button {height: auto;padding-top: 10px !important;padding-bottom: 10px !important;}</style>',
+#            unsafe_allow_html=True,)
+
+st.markdown(
+    '<style>.block-container {padding-top: 3rem;padding-bottom: 0rem;padding-left: 5rem;padding-right: 5rem;}</style>',
+    unsafe_allow_html=True)
 
 st.title('Sample GenAI infused CRM')
 customer_number = st.sidebar.selectbox(label='Select customer:', options=SAMPLE_DATA.keys())
@@ -52,7 +55,16 @@ CALL_HISTORY = SAMPLE_DATA.get(customer_number).get('call')
 CHAT_HISTORY = SAMPLE_DATA.get(customer_number).get('chat')
 EMAIL_HISTORY = SAMPLE_DATA.get(customer_number).get('email')
 
-# st.write(f'customer: {customer_number}')
+task = st.text_area('Task:', value=SAMPLE_TASK, height=160)
+
+
+if st.button('Process'):
+    response = get_completion(task=task,
+                              content=f'calls: {CALL_HISTORY} \n\n chats: {CHAT_HISTORY} \n\n emails: {EMAIL_HISTORY}',
+                              role=SYSTEM_ROLE, model=MODEL)
+    st.session_state['response'][customer_number] = response
+
+st.write(st.session_state['response'].get(customer_number))
 
 col1, col2, col3 = st.columns(3)
 

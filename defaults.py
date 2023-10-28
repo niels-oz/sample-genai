@@ -236,3 +236,17 @@ CSA: You're welcome, [Customer's Name]. We're here to help you make the most of 
 
                """}
                }
+
+
+MODEL = 'gpt-3.5-turbo'
+SYSTEM_ROLE = '''Use the provided content delimited by triple quotes to answer questions. If the answer cannot be \
+found in the content, write "I could not find an answer."'''
+
+SAMPLE_TASK = '''Create a brief abstract (max. 100 words) about the previous interactions with this customer. \
+Derive a customer satisfaction KPI based on the sentiment of the previous interactions on a \
+scale of 1 to 10. The format of the output should be like 
+
+CUSTOMER HAPPINESS: <customer satisfaction KPI goes here>
+
+BRIEFING: <short abstract of previous interactions with this customer goes here>
+'''
