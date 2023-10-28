@@ -38,3 +38,8 @@ To use the application, run the `app.py` file:
 streamlit run app.py
 ```
 
+Alternative way
+```
+docker-compose up
+```
+

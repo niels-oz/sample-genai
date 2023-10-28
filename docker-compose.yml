@@ -1,0 +1,9 @@
+version: "3.3"
+services:
+  sample-genai:
+    image: nielsoz/sample-genai:v1
+    build: .
+    ports:
+      - "8000:8501"
+    env_file:
+      - .env
