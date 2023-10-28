@@ -1,11 +1,8 @@
 from dotenv import load_dotenv
 import streamlit as st
-import json
-from datetime import datetime
 import os
 import openai
 
-# from defaults import MODEL, , EXAMPLE_CONTENT, EXAMPLE_TASK
 
 from defaults import MODEL, SYSTEM_ROLE, SAMPLE_DATA, SAMPLE_TASK
 
@@ -23,7 +20,6 @@ def get_completion(task, content, role=SYSTEM_ROLE, model=MODEL, top_p=1.0, stop
         presence_penalty=presence_penalty,
         stop=stop,
     )
-    print(response)
     return response.choices[0].message['content']
 
 
@@ -35,12 +31,7 @@ openai.api_key = os.environ['OPENAI_API_KEY']
 if 'response' not in st.session_state:
     st.session_state['response'] = {}
 
-
 st.set_page_config(layout='wide')
-# st.markdown('<style>#MainMenu {visibility: hidden;} footer {visibility: hidden;}</style>', unsafe_allow_html=True)
-# st.markdown('<style>button {height: auto;padding-top: 10px !important;padding-bottom: 10px !important;}</style>',
-#            unsafe_allow_html=True,)
-
 st.markdown(
     '<style>.block-container {padding-top: 3rem;padding-bottom: 0rem;padding-left: 5rem;padding-right: 5rem;}</style>',
     unsafe_allow_html=True)
