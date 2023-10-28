@@ -1,1 +1,7 @@
 .idea
+.venv
+.env
+bin
+lib
+__pycache__
+local/
