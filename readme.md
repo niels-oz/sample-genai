@@ -1,6 +1,6 @@
 # Gen AI ft. CRM
 
-This is a Python application that showcases generative AI capabilities in a CRM.
+This is a Python application to showcase generative AI used in a CRM.
 
 
 ## How it works
