@@ -1,9 +1,6 @@
-# Prompt Guru
+# Gen AI ft. CRM
 
 This is a Python application that showcases generative AI capabilities in a CRM.
-
-## Status
-
 
 
 ## How it works
