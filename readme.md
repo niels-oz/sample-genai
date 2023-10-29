@@ -1,12 +1,12 @@
 # Gen AI ft. CRM
 
-This is a Python application to showcase generative AI used in a CRM.
+This is a Python application to show generative AI used in a CRM.
 
 
 ## How it works
 
-The application provides you with mockup CRM. The application uses Streamlit to create the GUI. It uses 
-ChatGPT's complete webservice to query the LLM.
+The application provides you with mock up CRM. The application uses Streamlit to create the GUI. It uses 
+ChatGPT's complete webservice to query the LLM. 
 
 
 ## Installation
@@ -28,7 +28,7 @@ pip install -r requirements.txt
 
 To create an openAI API key goto https://platform.openai.com/account/api-keys. 
 
-Create a `.env` file from the .env.example. And add your OpenAI API key to it.
+Create a `.env` file from the .env.example and insert your OpenAI API key into it.
 
 ## Usage (if you have Python installed)
 
@@ -38,7 +38,7 @@ To use the application, run the `app.py` file:
 streamlit run app.py
 ```
 
-Alternative way
+Alternative way (only requirement is Docker for Desktop)
 ```
 docker-compose up
 ```

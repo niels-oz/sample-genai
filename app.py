@@ -3,7 +3,6 @@ import streamlit as st
 import os
 import openai
 
-
 from defaults import MODEL, SYSTEM_ROLE, SAMPLE_DATA, SAMPLE_TASK
 
 
@@ -48,7 +47,6 @@ EMAIL_HISTORY = SAMPLE_DATA.get(customer_number).get('email')
 
 task = st.text_area('Task:', value=SAMPLE_TASK, height=160)
 
-
 if st.button('Process'):
     response = get_completion(task=task,
                               content=f'calls: {CALL_HISTORY} \n\n chats: {CHAT_HISTORY} \n\n emails: {EMAIL_HISTORY}',
@@ -67,5 +65,3 @@ with col2.expander('chat history'):
 
 with col3.expander('email history'):
     st.write(EMAIL_HISTORY)
-
-
