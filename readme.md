@@ -6,7 +6,7 @@ This is a Python application to show generative AI used in a CRM.
 ## How it works
 
 The application provides you with mock up CRM. The application uses Streamlit to create the GUI. It uses 
-ChatGPT's complete webservice to query the LLM. 
+ChatGPT's complete webservice to query the LLM. API reference: https://platform.openai.com/docs/api-reference/chat/create
 
 
 ## Installation
