@@ -28,7 +28,7 @@ pip install -r requirements.txt
 
 To create an openAI API key goto https://platform.openai.com/account/api-keys. 
 
-Create a `.env` file from the .env.example and insert your OpenAI API key into it.
+Create a `.env` file from the .env.example and insert your OpenAI API key.
 
 ## Usage (if you have Python installed)
 
